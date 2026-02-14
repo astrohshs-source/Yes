@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Our Love Journey ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Segoe UI;
+background:linear-gradient(135deg,#ff9ab0,#ff5f8f);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+color:red;
+overflow:hidden;
+}
+
+.heart{
+position:fixed;
+top:-40px;
+width:30px;
+height:30px;
+background:red;
+transform:rotate(45deg);
+animation:fall linear infinite;
+}
+
+.heart::before,
+.heart::after{
+content:"";
+position:absolute;
+width:30px;
+height:30px;
+background:red;
+border-radius:50%;
+}
+
+.heart::before{top:-15px;left:0;}
+.heart::after{left:-15px;top:0;}
+
+@keyframes fall{
+0%{transform:translateY(-50px) rotate(45deg);}
+100%{transform:translateY(110vh) rotate(45deg);}
+}
+
+.card{
+background:rgba(255,255,255,0.3);
+padding:40px;
+border-radius:20px;
+max-width:550px;
+}
+
+h2{font-size:42px;}
+p{font-size:22px;}
+
+button{
+padding:14px 28px;
+margin:10px;
+border:none;
+border-radius:20px;
+font-size:20px;
+cursor:pointer;
+background:red;
+color:white;
+}
+
+.choco{font-size:45px;cursor:pointer;margin:10px;}
+.bigemoji{font-size:90px;}
+
+</style>
+</head>
+
+<body>
+
+<div class="card" id="box">
+<h2>Propose Day 💍</h2>
+<p>
+Sajal, my 3.5 little baccha 🐣❤️<br>
+You are my everything.<br>
+Will you stay with me forever?
+</p>
+
+<button id="yesBtn" onclick="choco()">YES ❤️</button>
+<button id="noBtn" onclick="noClick()">NO</button>
+</div>
+
+<script>
+
+/* normal falling hearts */
+let heartInterval=setInterval(createHeart,300);
+
+function createHeart(){
+let h=document.createElement("div");
+h.className="heart";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(4+Math.random()*3)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),7000);
+}
+
+let noCount=0;
+
+function noClick(){
+noCount++;
+let yes=document.getElementById("yesBtn");
+let no=document.getElementById("noBtn");
+
+yes.style.transform="scale("+(1+noCount*0.3)+")";
+no.style.transform="scale("+(1-noCount*0.2)+")";
+
+if(noCount>=4){
+no.style.display="none";
+alert("No is not allowed 😜 You must click YES ❤️");
+}
+}
+
+/* Chocolate Day */
+function choco(){
+box.innerHTML="<h2>Chocolate Day 🍫</h2><p>Tap chocolates</p><div id='c'></div>";
+
+let msgs=[
+"You're sweeter than chocolate ❤️",
+"Sending you endless kisses 💋",
+"I love the way you make me feel 💕",
+"You are my favorite addiction 😍",
+"I want to share every sweet moment with you 💖"
+];
+
+for(let i=0;i<5;i++){
+let s=document.createElement("span");
+s.innerHTML="🍫";
+s.className="choco";
+s.onclick=function(){alert(msgs[i]); this.remove(); check();};
+c.appendChild(s);
+}
+}
+
+function check(){
+if(document.querySelectorAll(".choco").length==0) teddy();
+}
+
+/* Teddy */
+function teddy(){
+box.innerHTML=
+"<h2>Teddy Day 🧸</h2>\
+<div class='bigemoji'>🧸</div>\
+<p>You are my cutest teddy. I want to hug you and always care for you.</p>\
+<button onclick='promise()'>Next ❤️</button>";
+}
+
+/* Promise */
+function promise(){
+box.innerHTML=
+"<h2>Promise Day 🤝</h2>\
+<p>I promise to stay beside you, support you, care for you, and never disappoint you.</p>\
+<button onclick='hug()'>Next ❤️</button>";
+}
+
+/* Hug */
+function hug(){
+box.innerHTML=
+"<h2>Hug Day 🤗</h2>\
+<img src='https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif' width='220'><br>\
+<p>You are the warmth of my heart.</p>\
+<button onclick='kiss()'>Next ❤️</button>";
+}
+
+/* Kiss */
+function kiss(){
+box.innerHTML=
+"<h2>Kiss Day 💋</h2>\
+<img src='https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif' width='220'><br>\
+<p>A gentle forehead kiss just for you.</p>\
+<button onclick='valentine()'>Final ❤️</button>";
+}
+
+/* VALENTINE SLIDE */
+function valentine(){
+
+/* darker background */
+document.body.style.background="linear-gradient(135deg,#8b0033,#ff1a66)";
+
+/* increase heart density */
+clearInterval(heartInterval);
+heartInterval=setInterval(createHeart,120);
+
+box.innerHTML=
+"<h2>Happy Valentine's Day ❤️</h2>\
+<p>\
+Sajal, my 3.5 little baccha 🐣❤️<br><br>\
+Will you be my Valentine?<br>\
+Will you stay with the person who has always dreamed of you,<br>\
+who truly desires you,<br>\
+and who believes you are the one I truly deserve?<br><br>\
+Forever Yours ❤️\
+</p>";
+}
+
+</script>
+
+</body>
+</html>
